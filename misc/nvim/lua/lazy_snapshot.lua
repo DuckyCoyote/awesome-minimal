@@ -8,6 +8,10 @@ return {
     end,
     ft = { "markdown" },
   },
+  {
+    "cuducos/yaml.nvim",
+      ft = { "yaml" }, -- optional
+  },
   { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
   { "AstroNvim/astrotheme", version = "^3", optional = true },
   { "JoosepAlviste/nvim-ts-context-commentstring", commit = "92e688f013c69f90c9bbd596019ec10235bc51de", optional = true },

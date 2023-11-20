@@ -1,6 +1,13 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 #ZSH_THEME="m3-round"
 #  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 #fi
@@ -17,7 +24,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="powerlevel10k/powerlevel10k"
+#
 eval "$(oh-my-posh init zsh --config ~/di4am0nd.omp.json)"
+#
 # ~/.zshrc
 #eval "$(starship init zsh)"
 #ZSH_THEME="catppuccin_macchiato"
@@ -121,4 +130,12 @@ source $ZSH/oh-my-zsh.sh
 
 alias ls='lsd'
 alias cat='bat'
+alias k='kubectl'
+alias kubectl="kubecolor"
 neofetch
+#source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /home/duckycoyote/Documentos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off

@@ -5,7 +5,7 @@ local icon = gfs.get_configuration_dir() .. '/icons/wifi.png'
 
 -- Crear el widget de fecha
 local wifi_text = wibox.widget.textbox()
-vc.register(wifi_text, vc.widgets.wifi, "<span color='#70c2ff'>   ${ssid}</span>", 10, 'wlp4s0')
+vc.register(wifi_text, vc.widgets.wifi, "<span color='#70c2ff'> </span>", 10, 'wlp4s0')
 
 local wifi = wifi_text
 

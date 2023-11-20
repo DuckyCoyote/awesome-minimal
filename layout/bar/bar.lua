@@ -88,30 +88,36 @@ awful.screen.connect_for_each_screen(function(s)
 	})
 
 	s.mywibox:setup {
-		{ -- Left Items
-			wibox.container.margin(dashboard, 15, 7, 8, 8),
-			add_margin(sensors_widget, 7),
-			--add_margin(s.mytasklist, 10),
-			layout = wibox.layout.align.horizontal,
+		{
+			{ -- Left Items
+				wibox.container.margin(dashboard, 15, 7, 8, 8),
+				add_margin(sensors_widget, 7),
+				--add_margin(s.mytasklist, 10),
+				add_margin(s.mypromptbox, 3),
+				layout = wibox.layout.fixed.horizontal,
+			},
+			nil,
+			{ -- Right Items
+				add_margin(spotify_widget({
+					font = 'Cascadia Code 11',
+					play_icon = gfs.get_configuration_dir() .. '/icons/play.png',
+					pause_icon = gfs.get_configuration_dir() .. '/icons/pause-button.png'
+				}), 10),
+				add_margin(last_widgets, 8),
+				add_margin(info_widgets, 7),
+				add_margin(volume_widget, 7),
+				add_margin(s.mylayoutbox, 10),
+				layout = wibox.layout.fixed.horizontal
+			},
+			layout = wibox.layout.align.horizontal
 		},
 		{ -- Middle Items
-			add_margin(s.mypromptbox, 3),
 			add_margin(s.mytaglist, 3),
-			nil,
-			layout = wibox.layout.flex.horizontal
+			valign = "center",
+			halign = "center",
+			layout = wibox.container.place
 		},
-		{ -- Right Items
-			add_margin(spotify_widget({
-				font = 'Cascadia Code 11',
-				play_icon = gfs.get_configuration_dir() .. '/icons/play.png',
-				pause_icon = gfs.get_configuration_dir() .. '/icons/pause-button.png'
-			}), 10),
-			add_margin(last_widgets, 8),
-			add_margin(info_widgets, 7),
-			add_margin(volume_widget, 7),
-			add_margin(s.mylayoutbox, 10),
-			layout = wibox.layout.fixed.horizontal
-		},
-		layout = wibox.layout.align.horizontal
+		layout = wibox.layout.stack,
+		expand = "none"
 	}
 end)

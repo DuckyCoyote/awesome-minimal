@@ -1,11 +1,5 @@
 local vc = require('vicious')
 local wibox = require('wibox')
-local awful = require('awful')
-local gears = require('gears')
-local gfs = require("gears.filesystem")
-local icon = gfs.get_configuration_dir() .. '/icons/crayon/calendar.png'
-local color = gfs.get_configuration_dir() .. '/theme/.palette'
-local beautiful = require('beautiful')
 local calendar_widget = require('awesome-wm-widgets.calendar-widget.calendar')
 
 -- Crear el widget de fecha

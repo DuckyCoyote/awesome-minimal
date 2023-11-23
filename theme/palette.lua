@@ -1,7 +1,7 @@
 local color = {}
 
-color.dark = '#111111'
-color.dark_inactive = '#101010'
+color.dark = '#111317'
+color.dark_inactive = '#111317'
 
 color.purple = '#8475d8'
 color.purple_inactive = '#9888f3'

@@ -17,7 +17,7 @@ local cmd_temp = 'cat /sys/devices/virtual/thermal/thermal_zone3/temp'
 
 -- Crear el widget de fecha
 local temp_text = wibox.widget.textbox()
-vc.register(temp_text, vc.widgets.thermal, "<span color='#b3de54'>󰔏 $1°C</span>", 5,
+vc.register(temp_text, vc.widgets.thermal, "<span color='#b3de54'>󰔏 </span>$1°C", 5,
   { "thermal_zone3", "sys", "temp" })
 
 local temp = temp_text

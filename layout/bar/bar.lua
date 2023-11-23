@@ -34,11 +34,11 @@ awful.screen.connect_for_each_screen(function(s)
 	s.mytaglist = taglist(s)
 
 	function rounded_shape(cr, width, height)
-		gears.shape.rounded_rect(cr, width, height, 15)
+		gears.shape.rounded_rect(cr, width, height, 30)
 	end
 
 	function widget_shape(cr, width, height)
-		gears.shape.rounded_rect(cr, width, height, 5)
+		gears.shape.rounded_rect(cr, width, height, 10)
 	end
 
 	local info_widgets = wibox.container.background(
@@ -51,15 +51,52 @@ awful.screen.connect_for_each_screen(function(s)
 		widget_shape
 	)
 
-	local sensors_widget = wibox.container.background(
+	local cpu_margin = wibox.container.background(
 		wibox.container.margin(
-			wibox.widget { cpu, hdd, mem, temp, spacing = 10,
+			wibox.widget { cpu, spacing = 10,
 				layout = wibox.layout.fixed.horizontal
 			},
 			10, 10, 0, 0),
 		'#242424',
 		widget_shape
 	)
+
+	local hdd_margin = wibox.container.background(
+		wibox.container.margin(
+			wibox.widget { hdd, spacing = 10,
+				layout = wibox.layout.fixed.horizontal
+			},
+			10, 10, 0, 0),
+		'#242424',
+		widget_shape
+	)
+
+	local mem_margin = wibox.container.background(
+		wibox.container.margin(
+			wibox.widget { mem, spacing = 10,
+				layout = wibox.layout.fixed.horizontal
+			},
+			10, 10, 0, 0),
+		'#242424',
+		widget_shape
+	)
+
+	local temp_margin = wibox.container.background(
+		wibox.container.margin(
+			wibox.widget { temp, spacing = 10,
+				layout = wibox.layout.fixed.horizontal
+			},
+			10, 10, 0, 0),
+		'#242424',
+		widget_shape
+	)
+
+	local left_widgets = wibox.widget {
+		layout = wibox.layout.align.horizontal,
+		add_margin(cpu_margin, 7),
+		add_margin(hdd_margin, 7),
+		add_margin(mem_margin, 7)
+	}
 
 	local last_widgets = wibox.container.background(
 		wibox.container.margin(
@@ -82,16 +119,17 @@ awful.screen.connect_for_each_screen(function(s)
 	s.mywibox = awful.wibar({
 		position = "top",
 		screen = s,
-		height = dpi(38),
+		height = dpi(35),
 		width = s.full,
-		--shape = roundedw wshape
+		--shape = rounded_shape
 	})
 
 	s.mywibox:setup {
 		{
 			{ -- Left Items
 				wibox.container.margin(dashboard, 15, 7, 8, 8),
-				add_margin(sensors_widget, 7),
+				left_widgets,
+				add_margin(temp_margin, 7),
 				--add_margin(s.mytasklist, 10),
 				add_margin(s.mypromptbox, 3),
 				layout = wibox.layout.fixed.horizontal,

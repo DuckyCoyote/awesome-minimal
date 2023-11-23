@@ -4,9 +4,8 @@
 <p>This Rice only works fine in 1920x1080 size screen, in lower resolution the widgets overlap </p>
 
 ![image](screenshots/screen1.png)
-![image](screenshots/screen4-map.png)
-![image](screenshots/screen3-fetch.png)
-![image](screenshots/screen2-zathura.png)
+![image](screenshots/screen2-neo.png)
+![image](screenshots/screen3-thunar.png)
 
 ## Acknowledgment
 

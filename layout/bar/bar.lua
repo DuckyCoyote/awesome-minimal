@@ -34,7 +34,7 @@ awful.screen.connect_for_each_screen(function(s)
 	s.mytaglist = taglist(s)
 
 	function rounded_shape(cr, width, height)
-		gears.shape.rounded_rect(cr, width, height, 30)
+		gears.shape.rounded_rect(cr, width, height, 17)
 	end
 
 	function widget_shape(cr, width, height)
@@ -121,6 +121,7 @@ awful.screen.connect_for_each_screen(function(s)
 		screen = s,
 		height = dpi(35),
 		width = s.full,
+		--border_width = dpi(7),
 		--shape = rounded_shape
 	})
 

@@ -1,7 +1,9 @@
 local color = {}
 
 color.dark = '#111317'
+--color.dark = '#11121D'
 color.dark_inactive = '#111317'
+--color.dark_inactive = '#11121D'
 
 color.purple = '#8475d8'
 color.purple_inactive = '#9888f3'

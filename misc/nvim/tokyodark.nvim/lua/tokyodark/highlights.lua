@@ -268,11 +268,11 @@ M.highlights = {
     LspCxxHlGroupNamespace = { fg = p.blue },
     LspCxxHlSkippedRegion = { fg = p.grey },
     LspCxxHlSkippedRegionBeginEnd = { fg = p.red },
-    LspDiagnosticsDefaultError = { fg = p.red + gamma(0.5) },
+    LspDiagnosticsDefaultError = { fg = p.red },
     LspDiagnosticsDefaultHint = { fg = p.purple + gamma(0.5) },
     LspDiagnosticsDefaultInformation = { fg = p.blue + gamma(0.5) },
     LspDiagnosticsDefaultWarning = { fg = p.yellow + gamma(0.5) },
-    LspDiagnosticsUnderlineError = { underline = true, sp = p.red + gamma(0.5) },
+    LspDiagnosticsUnderlineError = { underline = true, sp = p.red },
     LspDiagnosticsUnderlineHint = {
         underline = true,
         sp = p.purple + gamma(0.5),
@@ -285,7 +285,7 @@ M.highlights = {
         underline = true,
         sp = p.yellow + gamma(0.5),
     },
-    DiagnosticSignError = { fg = p.red + gamma(0.5) },
+    DiagnosticSignError = { fg = p.red },
     DiagnosticSignHint = { fg = p.purple + gamma(0.5) },
     DiagnosticSignInfo = { fg = p.blue + gamma(0.5) },
     DiagnosticSignWarn = { fg = p.yellow + gamma(0.5) },
@@ -347,11 +347,11 @@ M.highlights = {
     CmpItemKindSnippet = { fg = p.red },
 
     -- coc
-    CocErrorSign = { fg = p.red + gamma(0.5) },
+    CocErrorSign = { fg = p.red },
     CocHintSign = { fg = p.red + gamma(0.5) },
     CocInfoSign = { fg = p.red + gamma(0.5) },
     CocWarningSign = { fg = p.red + gamma(0.5) },
-    FgCocErrorFloatBgCocFloating = { fg = p.red + gamma(0.5), bg = p.bg2 },
+    FgCocErrorFloatBgCocFloating = { fg = p.red, bg = p.bg2 },
     FgCocHintFloatBgCocFloating = { fg = p.purple + gamma(0.5), bg = p.bg2 },
     FgCocInfoFloatBgCocFloating = { fg = p.blue + gamma(0.5), bg = p.bg2 },
     FgCocWarningFloatBgCocFloating = { fg = p.yellow + gamma(0.5), bg = p.bg2 },
@@ -403,6 +403,9 @@ M.highlights = {
     scalaTypeOperator = { fg = p.red },
     scalaOperator = { fg = p.red },
     scalaKeywordModifier = { fg = p.red },
+    DiagnosticError = { fg = p.red },
+    DiagnosticHint = { fg = p.blue },
+    DiagnosticUnderlineError = { underline = true, undercurl = true, sp = p.red }
 }
 
 function M.setup()

@@ -22,6 +22,7 @@ if astronvim.default_colorscheme then
 end
 
 --vim.o.background = "dark" -- or "light" for light mode
---vim.cmd([[colorscheme gruvbox]])
+--vim.cmd([[colorscheme tokyodark]])
+--vim.cmd([[colorscheme onedark_vivid]])
 
 require("astronvim.utils").conditional_func(astronvim.user_opts("polish", nil, false), true)

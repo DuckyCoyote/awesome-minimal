@@ -20,7 +20,7 @@ local sections = {
 }
 
 -- Normal --
--- Standard Operations
+-- Standard Operations 
 maps.n["j"] = { "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Move cursor down" }
 maps.n["k"] = { "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Move cursor up" }
 maps.n["<leader>w"] = { "<cmd>w<cr>", desc = "Save" }
@@ -30,6 +30,9 @@ maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
 maps.n["<C-q>"] = { "<cmd>qa!<cr>", desc = "Force quit" }
 maps.n["|"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
 maps.n["\\"] = { "<cmd>split<cr>", desc = "Horizontal Split" }
+maps.n["<leader>tt"] = { ":t.!<cr>", desc = "Duplicate row" }
+maps.n["<M-Up>"] = { ":m-2!<cr>", desc = "Move row up" }
+maps.n["<M-Down>"] = { ":m+1!<cr>", desc = "Move row down" }
 -- TODO: Remove when dropping support for <Neovim v0.10
 if not vim.ui.open then maps.n["gx"] = { utils.system_open, desc = "Open the file under cursor with system app" } end
 

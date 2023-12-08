@@ -2,9 +2,9 @@ local C = require("astrotheme.lib.util").set_palettes(require("astrotheme").conf
 
 return {
   normal = {
-    a = { fg = C.ui.base, bg = "#191919"--[[C.syntax.blue]], gui = "bold" },
-    b = { fg = C.ui.purple, bg = "#191919"--[[C.ui.statusline ]]},
-    c = { fg = C.ui.active_text, bg = "#191919"--[[C.ui.statusline]] },
+    a = { fg = C.ui.base, bg = C.syntax.blue, gui = "bold" },
+    b = { fg = C.ui.purple, bg = C.ui.statusline },
+    c = { fg = C.ui.active_text, bg = C.ui.statusline },
   },
   insert = { a = { fg = C.ui.base, bg = C.ui.green, gui = "bold" } },
   visual = { a = { fg = C.ui.base, bg = C.ui.purple, gui = "bold" } },

@@ -34,7 +34,12 @@ case $chosen in
         ;;
     $area)
 		if [[ -f /usr/bin/scrot ]]; then
-			scrot -s 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'
+			# Captura la pantalla y guarda la imagen con el nombre 'Screenshot' + fecha y hora
+			filename="Screenshot_$(date +"%Y%m%d_%H%M%S").png"
+			maim -s ~/Imágenes/Screenshots/"$filename"
+
+			# Abre la imagen con viewnior
+			viewnior ~/Imágenes/Screenshots/"$filename"
 		else
 			msg
 		fi

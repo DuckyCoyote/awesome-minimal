@@ -121,7 +121,7 @@ awful.screen.connect_for_each_screen(function(s)
 		screen = s,
 		height = dpi(35),
 		width = s.full,
-		--border_width = dpi(7),
+		border_width = dpi(7),
 		--shape = rounded_shape
 	})
 
@@ -138,7 +138,7 @@ awful.screen.connect_for_each_screen(function(s)
 			nil,
 			{ -- Right Items
 				add_margin(spotify_widget({
-					font = 'Cascadia Code 11',
+					font = 'CaskaydiaCove Nerd Font 11',
 					play_icon = gfs.get_configuration_dir() .. '/icons/play.png',
 					pause_icon = gfs.get_configuration_dir() .. '/icons/pause-button.png'
 				}), 10),
@@ -151,7 +151,7 @@ awful.screen.connect_for_each_screen(function(s)
 			layout = wibox.layout.align.horizontal
 		},
 		{ -- Middle Items
-			add_margin(s.mytaglist, 3),
+			add_margin(s.mytaglist, 5),
 			valign = "center",
 			halign = "center",
 			layout = wibox.container.place

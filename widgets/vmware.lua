@@ -66,6 +66,8 @@ local function read_file()
             os_image = ubuntu
           elseif os_name == 'fedora' then
             os_image = fedora
+          elseif os_name == 'debian' then
+            os_image = debian
           elseif os_name == 'off' then
             os_image = off
           else 

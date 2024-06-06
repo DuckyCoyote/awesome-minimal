@@ -21,6 +21,8 @@ local bat = require('widgets.battery')
 local temp = require('widgets.temp')
 local taglist = require('layout/bar/.taglist')
 
+local vm_widget = require('widgets.vmware')
+
 -- Functions
 local add_margin = require('layout/.add-margin')
 local baritems = require('layout/bar/.baritems')
@@ -42,106 +44,98 @@ awful.screen.connect_for_each_screen(function(s)
 	end
 
 	local info_widgets = wibox.container.background(
-		wibox.container.margin(
-			wibox.widget { wifi, date, spacing = 10,
-				layout = wibox.layout.fixed.horizontal
-			},
-			10, 10, 0, 0),
-		'#242424',
-		widget_shape
-	)
+		wibox.container.margin(wibox.widget {
+			wifi,
+			date,
+			spacing = 10,
+			layout = wibox.layout.fixed.horizontal
+		}, 10, 10, 0, 0), '#242424', widget_shape)
 
 	local cpu_margin = wibox.container.background(
-		wibox.container.margin(
-			wibox.widget { cpu, spacing = 10,
-				layout = wibox.layout.fixed.horizontal
-			},
-			10, 10, 0, 0),
-		'#242424',
-		widget_shape
-	)
+		wibox.container.margin(wibox.widget {
+			cpu,
+			spacing = 10,
+			layout = wibox.layout.fixed.horizontal
+		}, 10, 10, 0, 0), '#242424', widget_shape)
 
 	local hdd_margin = wibox.container.background(
-		wibox.container.margin(
-			wibox.widget { hdd, spacing = 10,
-				layout = wibox.layout.fixed.horizontal
-			},
-			10, 10, 0, 0),
-		'#242424',
-		widget_shape
-	)
+		wibox.container.margin(wibox.widget {
+			hdd,
+			spacing = 10,
+			layout = wibox.layout.fixed.horizontal
+		}, 10, 10, 0, 0), '#242424', widget_shape)
 
 	local mem_margin = wibox.container.background(
-		wibox.container.margin(
-			wibox.widget { mem, spacing = 10,
-				layout = wibox.layout.fixed.horizontal
-			},
-			10, 10, 0, 0),
-		'#242424',
-		widget_shape
-	)
+		wibox.container.margin(wibox.widget {
+			mem,
+			spacing = 10,
+			layout = wibox.layout.fixed.horizontal
+		}, 10, 10, 0, 0), '#242424', widget_shape)
 
 	local temp_margin = wibox.container.background(
-		wibox.container.margin(
-			wibox.widget { temp, spacing = 10,
-				layout = wibox.layout.fixed.horizontal
-			},
-			10, 10, 0, 0),
-		'#242424',
-		widget_shape
-	)
+		wibox.container.margin(wibox.widget {
+			temp,
+			spacing = 10,
+			layout = wibox.layout.fixed.horizontal
+		}, 10, 10, 0, 0), '#242424', widget_shape)
+
+	local vm_margin = wibox.container.background(
+		wibox.container.margin(wibox.widget {
+			vm_widget,
+			spacing = 10,
+			layout = wibox.layout.fixed.horizontal
+		}, 10, 10, 0, 0), '#242424', widget_shape)
 
 	local left_widgets = wibox.widget {
 		layout = wibox.layout.align.horizontal,
 		add_margin(cpu_margin, 7),
 		add_margin(hdd_margin, 7),
-		add_margin(mem_margin, 7)
+		add_margin(mem_margin, 7),
 	}
 
 	local last_widgets = wibox.container.background(
-		wibox.container.margin(
-			wibox.widget { weather_widget({
+		wibox.container.margin(wibox.widget {
+			weather_widget({
 				api_key = '74506808e69308bd700962204ad7fecf',
 				coordinates = { 19.6997, -99.1475 },
 				font_name = 'Carter One',
 				icons = 'VitalyGorbachev',
 				icons_extension = '.svg',
 				show_hourly_forecast = true,
-				show_daily_forecast = true,
-			}), spacing = 10,
-				layout = wibox.layout.fixed.horizontal
-			},
-			10, 10, 0, 0),
-		'#242424',
-		widget_shape
-	)
+				show_daily_forecast = true
+			}),
+			spacing = 10,
+			layout = wibox.layout.fixed.horizontal
+		}, 10, 10, 0, 0), '#242424', widget_shape)
 
 	s.mywibox = awful.wibar({
 		position = "top",
 		screen = s,
 		height = dpi(35),
 		width = s.full,
-		border_width = dpi(7),
-		--shape = rounded_shape
+		border_width = dpi(7)
+		-- shape = rounded_shape
 	})
 
 	s.mywibox:setup {
 		{
-			{ -- Left Items
+			{       -- Left Items
 				wibox.container.margin(dashboard, 15, 7, 8, 8),
 				left_widgets,
 				add_margin(temp_margin, 7),
-				--add_margin(s.mytasklist, 10),
-				add_margin(s.mypromptbox, 3),
-				layout = wibox.layout.fixed.horizontal,
-			},
-			nil,
-			{ -- Right Items
+				-- add_margin(s.mytasklist, 10),
 				add_margin(spotify_widget({
 					font = 'CaskaydiaCove Nerd Font 11',
 					play_icon = gfs.get_configuration_dir() .. '/icons/play.png',
-					pause_icon = gfs.get_configuration_dir() .. '/icons/pause-button.png'
-				}), 10),
+					pause_icon = gfs.get_configuration_dir() ..
+							'/icons/pause-button.png'
+				}), 8),
+				add_margin(s.mypromptbox, 3),
+				layout = wibox.layout.fixed.horizontal
+			},
+			nil,
+			{       -- Right Items
+				add_margin(vm_margin, 7),	
 				add_margin(last_widgets, 8),
 				add_margin(info_widgets, 7),
 				add_margin(volume_widget, 7),
@@ -150,7 +144,7 @@ awful.screen.connect_for_each_screen(function(s)
 			},
 			layout = wibox.layout.align.horizontal
 		},
-		{ -- Middle Items
+		{     -- Middle Items
 			add_margin(s.mytaglist, 5),
 			valign = "center",
 			halign = "center",

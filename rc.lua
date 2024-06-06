@@ -101,7 +101,13 @@ awful.rules.rules = rulesaws
 -- Signals
 require('meta.signals')
 
-os.execute('feh --bg-fill ~/.config/awesome/wall/AnimeWaiting.png')
+os.execute('feh --bg-fill ~/.config/awesome/wall/boy-dog.jpg')
+os.execute('xrandr --output HDMI-0 --auto --output DP-5 --auto --right-of HDMI-0')
+os.execute('openrgb --server &')
+os.execute('openrgb --device 0 --mode Direct --brightness 100 --color 0000ff &')
+os.execute('openrgb --device 1 --mode Direct --brightness 100 --color 0000ff &')
+os.execute('openrgb --device 2 --mode Direct --brightness 100 --color 0000ff &')
+
 -- https://gruvbox-wallpapers.pages.dev/
 -- https://www.google.com/search?q=gruvbox+dark+wallpaper&tbm=isch&ved=2ahUKEwjBmf-y_pKCAxViyMkDHYn6BLIQ2-cCegQIABAA&oq=gruvbox+dark+wallpaper&gs_lcp=CgNpbWcQAzIHCAAQExCABDoHCAAQigUQQzoICAAQgAQQsQM6BQgAEIAEOgQIABAeOgYIABAIEB46BggAEB4QE1DCCFiqJ2DSJ2gBcAB4AIABTogBmQySAQIyM5gBAKABAaoBC2d3cy13aXotaW1nwAEB&sclient=img&ei=9vk5ZcHGF-KQp84PifWTkAs&bih=858&biw=1884&client=firefox-b-d#imgrc=zMR8oQSSXujrHM&imgdii=li4ebm8ZpCFCeM
 -- os.execute('picom &')

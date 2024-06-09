@@ -10,6 +10,7 @@ local ubuntu = gfs.get_configuration_dir() .. '/icons/icons-os/ubuntu.png';
 local arch = gfs.get_configuration_dir() .. '/icons/icons-os/arch.png';
 local fedora = gfs.get_configuration_dir() .. '/icons/icons-os/fedora.png';
 local linux = gfs.get_configuration_dir() .. '/icons/icons-os/linux.png';
+local chungus = gfs.get_configuration_dir() .. '/icons/icons-os/chungus.png';
 local off = gfs.get_configuration_dir() .. '/icons/icons-os/off.png';
 
 local filepath = gfs.get_configuration_dir() .. "/widgets/vm.txt"
@@ -68,6 +69,8 @@ local function read_file()
             os_image = fedora
           elseif os_name == 'debian' then
             os_image = debian
+          elseif os_name == 'dc' then
+            os_image = chungus
           elseif os_name == 'off' then
             os_image = off
           else 

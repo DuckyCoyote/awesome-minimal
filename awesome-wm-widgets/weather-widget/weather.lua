@@ -157,7 +157,7 @@ local function worker(user_args)
 
 	local ICONS_DIR = WIDGET_DIR .. '/icons/' .. icon_pack_name .. '/'
 	local owm_one_cal_api =
-			('https://api.openweathermap.org/data/2.5/onecall' ..
+			('https://api.openweathermap.org/data/3.0/onecall' ..
 				'?lat=' .. coordinates[1] .. '&lon=' .. coordinates[2] .. '&appid=' .. api_key ..
 				'&units=' .. units .. '&exclude=minutely' ..
 				(show_hourly_forecast == false and ',hourly' or '') ..

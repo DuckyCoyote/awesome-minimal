@@ -3,6 +3,7 @@ local wibox = require('wibox')
 local awful = require('awful')
 local gears = require('gears')
 local gfs = require("gears.filesystem")
+local palette = require('theme/.palette')
 local current_config = gfs.get_configuration_dir()
 
 local add_margin = require('layout/.add-margin')
@@ -29,13 +30,13 @@ local get_taglist = function(s)
 	----------------------------------------------------------------------
 	----------------------------------------------------------------------
 	local unfocus_icon = "󰊠 "
-	local unfocus_color = "#C2CFDB"
+	local unfocus_color = palette.l_white
 
 	local empty_icon = " "
-	local empty_color = "#7eadcf"
+	local empty_color = palette.l_blue
 
 	local focus_icon = "󰮯 "
-	local focus_color = "#fabd2f" --[["#FFC300"]]
+	local focus_color = palette.b_yellow --[["#FFC300"]]
 	----------------------------------------------------------------------
 	----------------------------------------------------------------------
 

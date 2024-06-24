@@ -27,7 +27,11 @@ chosen="$(echo -e "$options" | $rofi_command -p 'App : scrot' -dmenu -selected-r
 case $chosen in
     $screen)
 		if [[ -f /usr/bin/scrot ]]; then
-			sleep 1; scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'
+			filename="Screenshot_$(date +"%Y%m%d_%H%M%S").png"
+			sleep 1; scrot "$filename"
+			mv "$filename" "$(xdg-user-dir PICTURES)/Screenshots/"
+			viewnior ~/Imágenes/Screenshots/"$filename"
+			xclip -selection clipboard -t image/png -i "$(xdg-user-dir PICTURES)/Screenshots/$filename"
 		else
 			msg
 		fi
@@ -40,13 +44,19 @@ case $chosen in
 
 			# Abre la imagen con viewnior
 			viewnior ~/Imágenes/Screenshots/"$filename"
+			xclip -selection clipboard -t image/png -i "$(xdg-user-dir PICTURES)/Screenshots/$filename"
 		else
 			msg
 		fi
         ;;
     $window)
 		if [[ -f /usr/bin/scrot ]]; then
-			sleep 1; scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'
+			filename="Screenshot_$(date +"%Y%m%d_%H%M%S").png"
+			sleep 1; scrot -u "$filename"
+			mv "$filename" "$(xdg-user-dir PICTURES)/Screenshots/"
+			viewnior ~/Imágenes/Screenshots/"$filename"
+			xclip -selection clipboard -t image/png -i "$(xdg-user-dir PICTURES)/Screenshots/$filename"
+			# sleep 1; scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'
 		else
 			msg
 		fi

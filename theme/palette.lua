@@ -1,29 +1,25 @@
 local color = {}
 
-color.dark = '#111317'
+color.dark = "#111317"
+-- color.dark = '#181818'
 --color.dark = '#11121D'
-color.dark_inactive = '#111317'
+color.dark_inactive = "#111317"
 --color.dark_inactive = '#11121D'
 
-color.purple = '#8475d8'
-color.purple_inactive = '#9888f3'
+color.white = "#ffffff"
+color.l_white = "#C2CFDB"
+color.grey = "#2d3640"
 
-color.pink = '#ff5573'
-color.pink_inactive = '#ff778f'
+color.red = "#ff7b70"
 
-color.blue = '#4ab5d3'
-color.blue_inactive = '#50c5e6'
+color.yellow = "#f9ce48"
+color.b_yellow = "#fabd2f"
 
-color.dark_blue = '#1180ff'
-color.dark_blue_inactive = '#7bb9ff'
+color.blue = "#70c2ff"
+color.l_blue = "#70c2ff"
+color.blue_inactive = "#89B4F9"
+color.blueish_white = "#89B4F9"
 
-color.green = '#80b544'
-color.green_inactive = '#95cf54'
-
-color.yellow = '#f3c253'
-color.yellow_inactive = '#f6c962'
-
-color.light = '#c4c4b5'
-color.light_active = '#b9b9ac'
+color.green = "#b3de54"
 
 return color

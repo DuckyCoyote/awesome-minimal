@@ -1,10 +1,10 @@
-local gears = require('gears')
-local color = require('theme/.palette')
-local theme_assets = require('beautiful.theme_assets')
-local xresources = require('beautiful.xresources')
-local gfs = require('gears.filesystem')
+local gears = require("gears")
+local color = require("theme/.palette")
+local theme_assets = require("beautiful.theme_assets")
+local xresources = require("beautiful.xresources")
+local gfs = require("gears.filesystem")
 local dpi = xresources.apply_dpi
-local theme_path = gfs.get_configuration_dir() .. '/themes/'
+local theme_path = gfs.get_configuration_dir() .. "/themes/"
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
@@ -12,15 +12,13 @@ local theme = {}
 -- theme.font = "Hack Nerd Font Bold 11"
 theme.font = "CaskaydiaMono Nerd Font Bold 12"
 
-theme.wallpaper = '/home/duckycoyote/wallcastle.jpg'
-
 theme.bg_normal = color.dark
 theme.bg_focus = color.dark
 theme.bg_minimize = color.dark
 
 theme.wibar_bg = color.dark
 
-theme.useless_gap = dpi(7)
+theme.useless_gap = dpi(4)
 -- theme.border_radius = dpi(50)
 theme.tasklist_disable_task_name = true
 
@@ -32,13 +30,15 @@ theme.hotkeys_modifiers_fg = color.light_active
 
 theme.border_width = dpi(4)
 -- theme.border_normal = '#FF7070'
-theme.border_focus = '#2d3640'
+-- theme.border_focus = '#2d3640'
+theme.border_focus = color.blue_inactive
 -- theme.border_focus = '#0094FA'
-theme.border_normal = '#15191e'
+theme.border_normal = color.grey
+-- theme.border_normal = '#15191e'
 
 -- Menu Colors
 
-theme.menu_font = 'Roboto Mono Nerd Font 15'
+theme.menu_font = "Roboto Mono Nerd Font 15"
 theme.menu_height = dpi(20)
 theme.menu_width = dpi(200)
 theme.menu_border_width = dpi(2)
@@ -66,17 +66,29 @@ theme.layout_cornerne = themes_path .. "default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path .. "default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path .. "default/layouts/cornersew.png"
 
--- Notifications
-function rounded_shape(cr, width, height)
-	gears.shape.margin = margin
-	gears.shape.rounded_rect(cr, width, height, 10)
-end
-
-theme.notification_width = dpi(300)
+-- -- Notifications
+-- function rounded_shape(cr, width, height)
+-- 	gears.shape.margin = margin
+-- 	gears.shape.rounded_rect(cr, width, height, 10)
+-- end
+--
+-- theme.notification_width = dpi(300)
 theme.notification_height = dpi(100)
-theme.notification_shape = rounded_shape
+-- theme.notification_shape = rounded_shape
+--
+-- theme.notification_icon_resize_strategy = 'center'
+-- theme.notification_icon_size = dpi(300)
 
-theme.notification_icon_resize_strategy = 'center'
+---------------------------------------
+-----Notifications---------------------
+---------------------------------------
+theme.notification_font = "Ubuntu Nerd Font 14"
+theme.notification_fg = "#a9b1d6"
+theme.notification_position = "top_middle"
+theme.notification_margin = dpi(10)
+theme.notification_border_width = dpi(0)
+theme.notification_spacing = dpi(15)
+theme.notification_icon_resize_strategy = "center"
 theme.notification_icon_size = dpi(300)
 
 return theme

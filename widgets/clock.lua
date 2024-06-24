@@ -1,5 +1,6 @@
 local vc = require('vicious')
 local wibox = require('wibox')
+local color = require('theme/.palette')
 local calendar_widget = require('awesome-wm-widgets.calendar-widget.calendar')
 
 -- Crear el widget de fecha

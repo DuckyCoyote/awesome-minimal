@@ -98,7 +98,7 @@ local media_slider = wibox.widget({
 	handle_shape = gears.shape.circle,
 	handle_color = color.red,
 	handle_width = dpi(15),
-	handle_border_width = 0,
+	handle_border_width = 5,
 	handle_border_color = "#4682b8",
 	minimum = 0,
 	maximum = 100,
@@ -449,7 +449,7 @@ local media = awful.popup({
 	end,
 	opacity = 1,
 	border_width = dpi(0),
-	border_color = color.blue,
+	border_color = color.dark,
 	placement = function(c)
 		local focused_screen = awful.screen.focused()
 		if not focused_screen then

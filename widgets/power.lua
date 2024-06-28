@@ -3,6 +3,8 @@ local gears = require("gears")
 local wibox = require("wibox")
 local naughty = require("naughty")
 local color = require("theme/.palette")
+local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 
 function widget_shape(cr, width, height)
 	gears.shape.rounded_rect(cr, width, height, 10)
@@ -24,12 +26,15 @@ local shutdown = wibox.widget({
 			widget = wibox.widget.textbox,
 		},
 		margins = { top = 20, bottom = 20, left = 20, right = 20 },
+
 		widget = wibox.container.margin,
 	},
 	align = "center",
 	valign = "center",
 	bg = color.dark,
 	focusable = true,
+	shape_border_color = color.grey,
+	shape_border_width = dpi(3),
 	shape = widget_shape,
 	widget = wibox.container.background,
 })
@@ -46,7 +51,8 @@ local reset = wibox.widget({
 	align = "center",
 	valign = "center",
 	bg = color.dark,
-
+	shape_border_color = color.grey,
+	shape_border_width = dpi(3),
 	shape = widget_shape,
 	widget = wibox.container.background,
 })
@@ -64,7 +70,8 @@ local block = wibox.widget({
 	valign = "center",
 	shape = widget_shape,
 	bg = color.dark,
-
+	shape_border_color = color.grey,
+	shape_border_width = dpi(3),
 	widget = wibox.container.background,
 })
 
@@ -81,7 +88,8 @@ local sleep = wibox.widget({
 	valign = "center",
 	shape = widget_shape,
 	bg = color.dark,
-
+	shape_border_color = color.grey,
+	shape_border_width = dpi(3),
 	widget = wibox.container.background,
 })
 
@@ -98,6 +106,8 @@ local logout = wibox.widget({
 	valign = "center",
 	shape = widget_shape,
 	bg = color.dark,
+	shape_border_color = color.grey,
+	shape_border_width = dpi(3),
 	widget = wibox.container.background,
 })
 
@@ -139,9 +149,16 @@ end) -- 			betterlockscreen -l
 
 reset:connect_signal("mouse::enter", function(c)
 	c:set_bg(color.black)
+	local wb = mouse.current_wibox
+	old_cursor, old_wibox = wb.cursor, wb
+	wb.cursor = "hand1"
 end)
 reset:connect_signal("mouse::leave", function(c)
 	c:set_bg(color.dark)
+	if old_wibox then
+		old_wibox.cursor = old_cursor
+		old_wibox = nil
+	end
 end)
 reset:connect_signal("button::press", function(c, _, _, button)
 	if button == 1 then
@@ -153,9 +170,16 @@ end)
 
 block:connect_signal("mouse::enter", function(c)
 	c:set_bg(color.black)
+	local wb = mouse.current_wibox
+	old_cursor, old_wibox = wb.cursor, wb
+	wb.cursor = "hand1"
 end)
 block:connect_signal("mouse::leave", function(c)
 	c:set_bg(color.dark)
+	if old_wibox then
+		old_wibox.cursor = old_cursor
+		old_wibox = nil
+	end
 end)
 block:connect_signal("button::press", function(c, _, _, button)
 	if button == 1 then
@@ -167,9 +191,16 @@ end)
 
 sleep:connect_signal("mouse::enter", function(c)
 	c:set_bg(color.black)
+	local wb = mouse.current_wibox
+	old_cursor, old_wibox = wb.cursor, wb
+	wb.cursor = "hand1"
 end)
 sleep:connect_signal("mouse::leave", function(c)
 	c:set_bg(color.dark)
+	if old_wibox then
+		old_wibox.cursor = old_cursor
+		old_wibox = nil
+	end
 end)
 sleep:connect_signal("button::press", function(c, _, _, button)
 	if button == 1 then
@@ -183,9 +214,16 @@ end)
 
 logout:connect_signal("mouse::enter", function(c)
 	c:set_bg(color.black)
+	local wb = mouse.current_wibox
+	old_cursor, old_wibox = wb.cursor, wb
+	wb.cursor = "hand1"
 end)
 logout:connect_signal("mouse::leave", function(c)
 	c:set_bg(color.dark)
+	if old_wibox then
+		old_wibox.cursor = old_cursor
+		old_wibox = nil
+	end
 end)
 logout:connect_signal("button::press", function(c, _, _, button)
 	if button == 1 then

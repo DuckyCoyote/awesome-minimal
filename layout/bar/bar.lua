@@ -19,8 +19,10 @@ local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
 local bat = require("widgets.battery")
 local temp = require("widgets.temp")
-local media = require("widgets/.media_player.main")
+local media = require("widgets/.media")
 local taglist = require("layout/bar/.taglist")
+
+local power = require("widgets.power")
 
 local vm_widget = require("widgets.vmware")
 
@@ -108,10 +110,6 @@ awful.screen.connect_for_each_screen(function(s)
 		"#242424",
 		widget_shape
 	)
-
-	mem_margin:connect_signal("button::release", function()
-		media.visible = not media.visible
-	end)
 
 	local temp_margin = wibox.container.background(
 		wibox.container.margin(
@@ -209,6 +207,8 @@ awful.screen.connect_for_each_screen(function(s)
 				add_margin(vm_margin, 7),
 				add_margin(last_widgets, 8),
 				add_margin(info_widgets, 7),
+				wibox.container.margin(media, 5, 10, 8, 7),
+				add_margin(power, 1),
 				add_margin(volume_widget, 7),
 				add_margin(s.mylayoutbox, 10),
 				layout = wibox.layout.fixed.horizontal,

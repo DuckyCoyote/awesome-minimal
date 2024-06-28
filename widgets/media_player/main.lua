@@ -187,7 +187,7 @@ local length_text = wibox.widget({
 	widget = wibox.widget.textbox,
 	font = "CaskaydiaCove Nerd Font 12",
 	forced_width = dpi(100),
-	forced_height = dpi(15),
+	forced_height = dpi(50),
 	halign = "right",
 })
 
@@ -198,7 +198,7 @@ local position_text = wibox.widget({
 	widget = wibox.widget.textbox,
 	font = "CaskaydiaCove Nerd Font 12",
 	forced_width = dpi(100),
-	forced_height = dpi(15),
+	forced_height = dpi(50),
 	halign = "left",
 })
 
@@ -324,7 +324,7 @@ local media_container = {
 
 --Play pause button
 local button = wibox.widget({
-	image = os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/pause.png",
+	image = os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/pausa.png",
 	resize = true,
 	forced_height = dpi(40),
 	forced_width = dpi(40),
@@ -348,9 +348,9 @@ button:buttons(gears.table.join(awful.button({}, 1, function()
 				.. "Nothing Playing"
 				.. "</span>"
 		then
-			button:set_image(os.getenv("HOME") .. "/.config/awesome/widgtes/media_player/assets/pause.png")
+			button:set_image(os.getenv("HOME") .. "/.config/awesome/widgtes/media_player/assets/pausa.png")
 		else
-			button:set_image(os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/play2.png")
+			button:set_image(os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/boton-de-play.png")
 		end
 	else
 		if
@@ -361,16 +361,16 @@ button:buttons(gears.table.join(awful.button({}, 1, function()
 				.. "Nothing Playing"
 				.. "</span>"
 		then
-			button:set_image(os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/pause.png")
+			button:set_image(os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/pausa.png")
 		else
-			button:set_image(os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/pause.png")
+			button:set_image(os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/pausa.png")
 		end
 	end
 end)))
 
 --Next & previous button
 local next = wibox.widget({
-	image = os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/next-button.png",
+	image = os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/siguiente-boton.png",
 	resize = true,
 	forced_height = dpi(40),
 	forced_width = dpi(40),
@@ -386,7 +386,7 @@ next:connect_signal("button::press", function(_, _, _, button)
 end)
 
 local previous = wibox.widget({
-	image = os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/previous.png",
+	image = os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/anterior.png",
 	resize = true,
 	forced_height = dpi(40),
 	forced_width = dpi(40),
@@ -403,7 +403,7 @@ end)
 
 -- 15s backward forward
 local forward = wibox.widget({
-	image = os.getenv("HOME") .. "/.config/awesome/popups/media_player/assets/15sforward.png",
+	image = os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/15sforward.png",
 	resize = true,
 	forced_height = dpi(45),
 	forced_width = dpi(45),
@@ -419,7 +419,7 @@ forward:connect_signal("button::press", function(_, _, _, button)
 end)
 
 local backward = wibox.widget({
-	image = os.getenv("HOME") .. "/.config/awesome/popups/media_player/assets/15sbackward.png",
+	image = os.getenv("HOME") .. "/.config/awesome/widgets/media_player/assets/15sbackward.png",
 	resize = true,
 	forced_height = dpi(45),
 	forced_width = dpi(45),
@@ -439,21 +439,42 @@ end)
 -----------------------------------------------
 
 local media = awful.popup({
-	screen = s,
 	widget = wibox.container.background,
 	ontop = true,
-	bg = "#00000000",
+	bg = "#111317",
 	visible = false,
 	-- maximum_width = 200,
-	placement = function(c)
-		awful.placement.top_right(c, { margins = { top = dpi(43), bottom = dpi(8), left = dpi(8), right = dpi(8) } })
-	end,
 	shape = function(cr, width, height)
 		gears.shape.rounded_rect(cr, width, height, 0)
 	end,
 	opacity = 1,
 	border_width = dpi(0),
 	border_color = color.blue,
+	placement = function(c)
+		local focused_screen = awful.screen.focused()
+		if not focused_screen then
+			return
+		end
+
+		-- Obtener la geometría de la pantalla enfocada
+		local screen_geometry = focused_screen.geometry
+
+		-- Calcular las márgenes en función del monitor
+		local margins = {
+			top = dpi(50),
+			right = dpi(8),
+		}
+
+		-- Ajustar la posición para que esté en la parte superior derecha del monitor correcto
+		local x = screen_geometry.x + screen_geometry.width - margins.right - c.width
+		local y = screen_geometry.y + margins.top
+
+		-- Establecer la posición del cliente
+		c:geometry({
+			x = x,
+			y = y,
+		})
+	end,
 })
 
 media:setup({
@@ -476,7 +497,6 @@ media:setup({
 						media_container,
 						widget = wibox.container.margin,
 						top = dpi(10),
-						bottom = dpi(35),
 					},
 					{
 						{
@@ -528,7 +548,7 @@ media:setup({
 		right = dpi(25),
 	},
 	widget = wibox.container.background,
-	bg = color.background_dark,
+	bg = color.dark_inactive,
 	shape = function(cr, width, height)
 		gears.shape.rounded_rect(cr, width, height, 10)
 	end,

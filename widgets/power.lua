@@ -31,7 +31,7 @@ local shutdown = wibox.widget({
 	},
 	align = "center",
 	valign = "center",
-	bg = color.dark,
+	bg = color.dark_inactive,
 	focusable = true,
 	shape_border_color = color.grey,
 	shape_border_width = dpi(3),
@@ -50,7 +50,7 @@ local reset = wibox.widget({
 	},
 	align = "center",
 	valign = "center",
-	bg = color.dark,
+	bg = color.dark_inactive,
 	shape_border_color = color.grey,
 	shape_border_width = dpi(3),
 	shape = widget_shape,
@@ -69,7 +69,7 @@ local block = wibox.widget({
 	align = "center",
 	valign = "center",
 	shape = widget_shape,
-	bg = color.dark,
+	bg = color.dark_inactive,
 	shape_border_color = color.grey,
 	shape_border_width = dpi(3),
 	widget = wibox.container.background,
@@ -87,7 +87,7 @@ local sleep = wibox.widget({
 	align = "center",
 	valign = "center",
 	shape = widget_shape,
-	bg = color.dark,
+	bg = color.dark_inactive,
 	shape_border_color = color.grey,
 	shape_border_width = dpi(3),
 	widget = wibox.container.background,
@@ -105,7 +105,7 @@ local logout = wibox.widget({
 	align = "center",
 	valign = "center",
 	shape = widget_shape,
-	bg = color.dark,
+	bg = color.dark_inactive,
 	shape_border_color = color.grey,
 	shape_border_width = dpi(3),
 	widget = wibox.container.background,
@@ -133,7 +133,7 @@ shutdown:connect_signal("mouse::enter", function(c)
 	wb.cursor = "hand1"
 end)
 shutdown:connect_signal("mouse::leave", function(c)
-	c:set_bg(color.dark)
+	c:set_bg(color.dark_inactive)
 	if old_wibox then
 		old_wibox.cursor = old_cursor
 		old_wibox = nil
@@ -154,7 +154,7 @@ reset:connect_signal("mouse::enter", function(c)
 	wb.cursor = "hand1"
 end)
 reset:connect_signal("mouse::leave", function(c)
-	c:set_bg(color.dark)
+	c:set_bg(color.dark_inactive)
 	if old_wibox then
 		old_wibox.cursor = old_cursor
 		old_wibox = nil
@@ -175,7 +175,7 @@ block:connect_signal("mouse::enter", function(c)
 	wb.cursor = "hand1"
 end)
 block:connect_signal("mouse::leave", function(c)
-	c:set_bg(color.dark)
+	c:set_bg(color.dark_inactive)
 	if old_wibox then
 		old_wibox.cursor = old_cursor
 		old_wibox = nil
@@ -196,7 +196,7 @@ sleep:connect_signal("mouse::enter", function(c)
 	wb.cursor = "hand1"
 end)
 sleep:connect_signal("mouse::leave", function(c)
-	c:set_bg(color.dark)
+	c:set_bg(color.dark_inactive)
 	if old_wibox then
 		old_wibox.cursor = old_cursor
 		old_wibox = nil
@@ -219,7 +219,7 @@ logout:connect_signal("mouse::enter", function(c)
 	wb.cursor = "hand1"
 end)
 logout:connect_signal("mouse::leave", function(c)
-	c:set_bg(color.dark)
+	c:set_bg(color.dark_inactive)
 	if old_wibox then
 		old_wibox.cursor = old_cursor
 		old_wibox = nil
@@ -227,7 +227,8 @@ logout:connect_signal("mouse::leave", function(c)
 end)
 logout:connect_signal("button::press", function(c, _, _, button)
 	if button == 1 then
-		os.execute("pkill -u duckycoyote")
+		awful.spawn("pkill -u duckycoyote")
+		-- os.execute("pkill -u " .. iam)
 	elseif button == 2 then
 		naughty.notify({ text = "Wheel click" })
 	end
@@ -239,7 +240,7 @@ local power_popup = awful.popup({
 	}),
 	ontop = true,
 	maximum_width = 1800,
-	bg = color.dark_inactive,
+	bg = color.dark,
 	visible = false,
 	placement = awful.placement.centered,
 })

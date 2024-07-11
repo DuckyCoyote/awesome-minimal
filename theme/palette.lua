@@ -3,12 +3,15 @@ local color = {}
 color.dark = "#111317"
 -- color.dark = '#181818'
 --color.dark = '#11121D'
-color.dark_inactive = "#171a20"
+-- color.dark_inactive = "#161829"
+color.dark_inactive = "#1b1f26"
 --color.dark_inactive = '#11121D'
-color.black = "#00000066"
+color.black = "#1F1F2F"
 
 color.white = "#ffffff"
+color.light_active = "#ffffff"
 color.l_white = "#C2CFDB"
+color.light = "#C2CFDB"
 color.grey = "#2d3640"
 
 color.red = "#ff7b70"

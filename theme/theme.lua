@@ -10,15 +10,17 @@ local themes_path = gfs.get_themes_dir()
 local theme = {}
 
 -- theme.font = "Hack Nerd Font Bold 11"
-theme.font = "CaskaydiaMono Nerd Font Bold 12"
+theme.font = "CaskaydiaMono Nerd Font Bold 11"
+-- theme.nerd_font = "CaskaydiaMono Nerd Font Bold 11"
+-- theme.font = "Cartograph CF medium 12"
 
 theme.bg_normal = color.dark
-theme.bg_focus = color.dark
+theme.bg_focus = color.dark_inactive
 theme.bg_minimize = color.dark
 
 theme.wibar_bg = color.dark
 
-theme.useless_gap = dpi(4)
+theme.useless_gap = dpi(6)
 -- theme.border_radius = dpi(50)
 theme.tasklist_disable_task_name = true
 
@@ -31,9 +33,9 @@ theme.hotkeys_modifiers_fg = color.light_active
 theme.border_width = dpi(4)
 -- theme.border_normal = '#FF7070'
 -- theme.border_focus = '#2d3640'
-theme.border_focus = color.blue_inactive
+theme.border_focus = color.dark_inactive
 -- theme.border_focus = '#0094FA'
-theme.border_normal = color.grey
+theme.border_normal = color.dark
 -- theme.border_normal = '#15191e'
 
 -- Menu Colors
@@ -82,7 +84,7 @@ theme.notification_height = dpi(100)
 ---------------------------------------
 -----Notifications---------------------
 ---------------------------------------
-theme.notification_font = "Ubuntu Nerd Font 14"
+theme.notification_font = "Fira Code Nerd Fon Bold 13"
 theme.notification_fg = "#a9b1d6"
 theme.notification_position = "top_middle"
 theme.notification_margin = dpi(10)

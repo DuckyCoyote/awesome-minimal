@@ -1,8 +1,8 @@
-local vc = require('vicious')
-local wibox = require('wibox')
+local vc = require("vicious")
+local wibox = require("wibox")
 local gfs = require("gears.filesystem")
 local palette = require("theme/.palette")
-local icon = gfs.get_configuration_dir() .. '/icons/crayon/storage.png'
+local icon = gfs.get_configuration_dir() .. "/icons/crayon/storage.png"
 
 local color = palette.blue
 -- Crear el widget de fecha

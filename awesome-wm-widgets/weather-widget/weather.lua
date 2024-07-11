@@ -70,7 +70,7 @@ local weather_popup = awful.popup({
 			top = dpi(50),
 			bottom = dpi(8),
 			left = dpi(20),
-			right = dpi(200),
+			right = dpi(700),
 		}
 
 		-- Ajustar la posición para que esté en la parte superior derecha del monitor correcto

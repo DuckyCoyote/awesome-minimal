@@ -3,6 +3,7 @@ local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
 local gfs = require("gears.filesystem")
+local color = require("theme/.palette")
 local current_config = gfs.get_configuration_dir()
 
 -- Widgets
@@ -18,11 +19,12 @@ local dashboard = require("widgets/.dashboard")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
 local bat = require("widgets.battery")
-local temp = require("widgets.temp")
+-- local temp = require("widgets.temp")
 local media = require("widgets/.media")
 local taglist = require("layout/bar/.taglist")
 
 local power = require("widgets.power")
+local pkg = require("widgets/.pkg")
 
 local vm_widget = require("widgets.vmware")
 
@@ -46,11 +48,12 @@ awful.screen.connect_for_each_screen(function(s)
 		gears.shape.rounded_rect(cr, width, height, 10)
 	end
 
-	local info_widgets = wibox.container.background(
+	local info_widgets = {
 		wibox.container.margin(
 			wibox.widget({
 				wifi,
-				date,
+				volume_widget,
+				pkg,
 				spacing = 10,
 				layout = wibox.layout.fixed.horizontal,
 			}),
@@ -59,75 +62,14 @@ awful.screen.connect_for_each_screen(function(s)
 			0,
 			0
 		),
-		"#242424",
-		widget_shape
-	)
-
-	local cpu_margin = wibox.container.background(
-		wibox.container.margin(
-			wibox.widget({
-				cpu,
-				spacing = 10,
-				layout = wibox.layout.fixed.horizontal,
-			}),
-			10,
-			10,
-			0,
-			0
-		),
-		"#242424",
-		widget_shape
-	)
-
-	local hdd_margin = wibox.container.background(
-		wibox.container.margin(
-			wibox.widget({
-				hdd,
-				spacing = 10,
-				layout = wibox.layout.fixed.horizontal,
-			}),
-			10,
-			10,
-			0,
-			0
-		),
-		"#242424",
-		widget_shape
-	)
-
-	local mem_margin = wibox.container.background(
-		wibox.container.margin(
-			wibox.widget({
-				mem,
-				spacing = 10,
-				layout = wibox.layout.fixed.horizontal,
-			}),
-			10,
-			10,
-			0,
-			0
-		),
-		"#242424",
-		widget_shape
-	)
-
-	local temp_margin = wibox.container.background(
-		wibox.container.margin(
-			wibox.widget({
-				temp,
-				spacing = 10,
-				layout = wibox.layout.fixed.horizontal,
-			}),
-			10,
-			10,
-			0,
-			0
-		),
-		"#242424",
-		widget_shape
-	)
-
-	local vm_margin = wibox.container.background(
+		bg = color.dark_inactive,
+		shape = widget_shape,
+		shape_border_color = "#34344f",
+		shape_border_width = 2,
+		widget = wibox.container.background,
+	}
+	-- #303145
+	local vm_margin = {
 		wibox.container.margin(
 			wibox.widget({
 				vm_widget,
@@ -139,18 +81,21 @@ awful.screen.connect_for_each_screen(function(s)
 			0,
 			0
 		),
-		"#242424",
-		widget_shape
-	)
+		shape = widget_shape,
+		bg = color.dark_inactive,
+		shape_border_color = "#34344f",
+		shape_border_width = 2,
+		widget = wibox.container.background,
+	}
 
-	local left_widgets = wibox.widget({
+	local right_widgets = wibox.widget({
 		layout = wibox.layout.align.horizontal,
-		add_margin(cpu_margin, 7),
-		add_margin(hdd_margin, 7),
-		add_margin(mem_margin, 7),
+		-- wibox.container.margin(temp, 5, 15, 5, 5),
+		wibox.container.margin(cpu, 5, 15, 5, 5),
+		wibox.container.margin(mem, 5, 10, 5, 5),
 	})
 
-	local last_widgets = wibox.container.background(
+	local last_widgets = {
 		wibox.container.margin(
 			wibox.widget({
 				weather_widget({
@@ -167,61 +112,85 @@ awful.screen.connect_for_each_screen(function(s)
 			}),
 			10,
 			10,
-			0,
-			0
+			3,
+			3
 		),
-		"#242424",
-		widget_shape
-	)
+		shape = widget_shape,
+		bg = color.dark_inactive,
+		shape_border_color = "#34344f",
+		shape_border_width = 2,
+		widget = wibox.container.background,
+	}
+
+	local taglist_cont = {
+		wibox.container.margin(
+			wibox.widget({
+				s.mytaglist,
+				spacing = 10,
+				layout = wibox.layout.fixed.horizontal,
+			}),
+			10,
+			10,
+			3,
+			3
+		),
+		bg = color.dark_inactive,
+		shape = widget_shape,
+		widget = wibox.container.background,
+	}
 
 	s.mywibox = awful.wibar({
 		position = "top",
 		screen = s,
-		height = dpi(35),
+		height = dpi(33),
 		width = s.full,
-		margins = { top = dpi(7), left = dpi(5), right = dpi(5), bottom = dpi(0) },
+		bg = color.dark,
+		margins = { top = dpi(7), left = dpi(10), right = dpi(10), bottom = dpi(0) },
 		-- border_width = dpi(7)
 		-- shape = rounded_shape
 	})
 
 	s.mywibox:setup({
 		{
-			{ -- Left Items
-				wibox.container.margin(dashboard, 15, 15, 9, 8),
-				left_widgets,
-				add_margin(temp_margin, 7),
-				-- add_margin(s.mytasklist, 10),
-				add_margin(
-					spotify_widget({
-						font = "CaskaydiaCove Nerd Font 11",
-						play_icon = gfs.get_configuration_dir() .. "/icons/play.png",
-						pause_icon = gfs.get_configuration_dir() .. "/icons/pause-button.png",
-					}),
-					8
-				),
-				add_margin(s.mypromptbox, 3),
-				layout = wibox.layout.fixed.horizontal,
-			},
-			nil,
-			{ -- Right Items
-				add_margin(vm_margin, 7),
-				add_margin(last_widgets, 8),
-				add_margin(info_widgets, 7),
-				wibox.container.margin(media, 5, 10, 8, 7),
-				add_margin(power, 1),
-				add_margin(volume_widget, 7),
-				add_margin(s.mylayoutbox, 10),
-				layout = wibox.layout.fixed.horizontal,
-			},
+			wibox.container.margin(dashboard, 15, 15, 7, 7),
+			wibox.container.margin(taglist_cont, 5, 5, 3, 3),
+			wibox.container.margin(vm_margin, 5, 5, 5, 3),
 			layout = wibox.layout.align.horizontal,
 		},
-		{ -- Middle Items
-			add_margin(s.mytaglist, 5),
-			valign = "center",
-			halign = "center",
-			layout = wibox.container.place,
+		{ -- Left Items
+			wibox.container.margin(
+				spotify_widget({
+					font = "CaskaydiaCove Nerd Font 11",
+					play_icon = gfs.get_configuration_dir() .. "/icons/jugar.png",
+					pause_icon = gfs.get_configuration_dir() .. "/icons/boton-de-pausa.png",
+				}),
+				8,
+				8,
+				11,
+				8
+			),
+			layout = wibox.layout.fixed.horizontal,
 		},
-		layout = wibox.layout.stack,
-		expand = "none",
+		{
+			wibox.container.margin(last_widgets, 5, 20, 5, 5),
+			{
+				right_widgets,
+				wibox.container.margin(hdd, 5, 15, 5, 5),
+				wibox.container.margin(info_widgets, 0, 5, 5, 5),
+				widget = wibox.layout.align.horizontal,
+			},
+			{
+				{
+					wibox.container.margin(media, 7, 7, 0, 0),
+					power,
+					space = 20,
+					layout = wibox.layout.align.horizontal,
+				},
+				wibox.container.margin(date, 10, 25, 5, 5),
+				layout = wibox.layout.align.horizontal,
+			},
+			widget = wibox.layout.align.horizontal,
+		},
+		layout = wibox.layout.align.horizontal,
 	})
 end)

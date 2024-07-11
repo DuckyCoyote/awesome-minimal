@@ -110,7 +110,7 @@ awful.rules.rules = rulesaws
 require("meta.signals")
 require("layout/.notifications")
 
--- os.execute('feh --bg-fill ~/.config/awesome/wall/boy-dog.jpg')
+-- os.execute('feh --bg-fill ~/.config/awesome/wall/macwall.png')
 os.execute("feh --bg-fill ~/.config/awesome/wall/astron.png")
 os.execute("xrandr --output HDMI-0 --auto --output DP-5 --auto --right-of HDMI-0")
 os.execute("openrgb --server &")

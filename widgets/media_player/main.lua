@@ -548,7 +548,7 @@ media:setup({
 		right = dpi(25),
 	},
 	widget = wibox.container.background,
-	bg = color.dark_inactive,
+	bg = color.dark,
 	shape = function(cr, width, height)
 		gears.shape.rounded_rect(cr, width, height, 10)
 	end,
